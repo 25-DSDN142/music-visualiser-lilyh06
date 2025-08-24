@@ -5,13 +5,17 @@ let eSmallHeight;
 let sparkleW;
 let sparkleH;
 let sparkleY;
+
+
+
+
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
- //stroke(100, 161, 227)
-//strokeWeight(3)
-noStroke()
- background(41, 112, 125)
+
+
+ noStroke()
+ background(28, 73, 133)
  eWidth = map(vocal/2,0,100,20,500)
  eHeight = map(other,0,100,20,500)
  sparkleW = map(drum,0,100,5,70)
@@ -19,15 +23,15 @@ noStroke()
  sparkleY = map(drum,0,100,200,220)
 
 
-fill (69, 176, 149,120)
+fill (110, 194, 224,120)
  for(let i =0; i<4; i++){
- ellipse(0,100,eWidth*100,eHeight*i)
+ ellipse(20,100,eWidth*100,eHeight*i)
  }
-fill (50, 31, 96,127)
+fill (29, 112, 153,127)
  for(let i =0; i<4; i++){
  ellipse(550,500,eWidth*100,eHeight*i)
  }
-fill(0,120)
+fill(8, 73, 105, 120)
  for(let i =0; i<4; i++){
  ellipse(0,900,eWidth*100,eHeight*i)//x height by i make horizontal, x width by number
  }
@@ -36,20 +40,48 @@ fill(0,120)
 
  fill(255,200)
  rotate(45);
-  for(let i =0; i<5; i++){
-  rect (300,sparkleY*i,sparkleW,sparkleH)
+  for(let i =0; i<2; i++){
+  rect (400,sparkleY*i,sparkleW,sparkleH)
+ }
+ for(let i =0; i<2; i++){
+  rect (390,sparkleY*i+50,sparkleW-50,sparkleH-50)
  }
 
-// sparkleX = sparkleX +6
-// if(sparkleX > 900){
-   sparkleX = 0
-// }
 
 
-//make sparkles drums (flickery)
-//waves or ride as other or vocals (more calm)
-//play with opacity and overlaipping
 
+
+  
+  
+//  noStroke()
+//  background(41, 112, 125)
+//  eWidth = map(vocal/2,0,100,20,500)
+//  eHeight = map(other,0,100,20,500)
+//  sparkleW = map(drum,0,100,5,70)
+//  sparkleH = map(drum,0,100,5,70)
+//  sparkleY = map(drum,0,100,200,220)
+
+
+// fill (69, 176, 149,120)
+//  for(let i =0; i<4; i++){
+//  ellipse(20,100,eWidth*100,eHeight*i)
+//  }
+// fill (50, 31, 96,127)
+//  for(let i =0; i<4; i++){
+//  ellipse(550,500,eWidth*100,eHeight*i)
+//  }
+// fill(0,120)
+//  for(let i =0; i<4; i++){
+//  ellipse(0,900,eWidth*100,eHeight*i)//x height by i make horizontal, x width by number
+//  }
+
+ 
+
+//  fill(255,200)
+//  rotate(45);
+//   for(let i =0; i<5; i++){
+//   rect (300,sparkleY*i,sparkleW,sparkleH)
+//  }
 
  
  
