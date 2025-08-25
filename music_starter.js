@@ -8,40 +8,98 @@ let sparkleY;
 let eSize;
 
 
-
+let Xmove;
+let Ymove;
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
 //third droplet version
-//  background(6, 89, 128)
-//  eWidth = map(other/4,0,100,20,500)
-//  eHeight = map(bass/4,0,100,20,500)
-//  lineWidth = map(other/2,0,100,20,500)
-//  lineHeight = map(other/2,0,100,20,500)
+ background(6, 89, 128)
+ eWidth = map(vocal/4,0,100,20,500)
+ eHeight = map(vocal/4,0,100,20,500)
 
-//  sparkleW = map(drum,0,100,5,70)
-//  sparkleH = map(drum,0,100,5,70)
-//  sparkleY = map(drum,0,100,200,220)
+ lineWidth = map(other/2,0,100,20,500)
+ lineHeight = map(other/2,0,100,20,500)
 
-//  fill(69, 218, 237,100)
-//  eSize = map(vocal/2,0,100,50,500)
-//  noStroke()
-//  for(let i =0; i<4; i++){
-//  ellipse(250,400,eWidth*i,eHeight*i)
-//  }
-//  for(let i =0; i<4; i++){
-//  ellipse(350,400,eWidth*i/2,eHeight*i/2)
-//  }
-//  noFill()
-//  stroke(69, 218, 237,100)
-//  strokeWeight(4)
+//  eBassWidth = map(bass,0,100,50,300)
+//  eBassHeight = map(bass,0,100,50,300)
 
-//  for(let i =0; i<4; i++){
-//  ellipse(150,450,lineWidth*i/3,lineHeight*i/3)
-//  }
+ sparkleW = map(drum,0,100,5,70)
+ sparkleH = map(drum,0,100,5,70)
+ sparkleY = map(drum,0,100,200,220)
+fill(255)
+ellipse(250, Ymove++,400,400)
+
+
+
+
+
+
+//vocal
+ noStroke()
+ fill(69, 218, 237,70)
+ eSize = map(vocal/2,0,100,50,500)
+ for(let i =0; i<5; i++){
+ ellipse(250,375,eWidth*i,eHeight*i)
+ }
+ for(let i =0; i<4; i++){
+ ellipse(400,400,eWidth*i/2,eHeight*i/2)
+ }
+ for(let i =0; i<5; i++){
+ ellipse(325,525,eWidth*i/2,eHeight*i/2)
+ }
+ for(let i =0; i<3; i++){
+ ellipse(100,600,eWidth*i/2,eHeight*i/2)
+ }
+ for(let i =0; i<4; i++){
+ ellipse(100,600,eWidth*i/2,eHeight*i/2)
+ }
+ for(let i =0; i<4; i++){
+ ellipse(250,675,eWidth*i/1.5,eHeight*i/1.5)
+ }
+ for(let i =0; i<3; i++){
+ ellipse(250,775,eWidth*i/2,eHeight*i/2)
+ }
+
+
+
+
+//other, same colour
+ noFill()
+ stroke(69, 218, 237,100)
+ strokeWeight(4)
+ for(let i =0; i<4; i++){
+ ellipse(150,450,lineWidth*i/3,lineHeight*i/3)
+ }
+ for(let i =0; i<4; i++){
+ ellipse(250,600,lineWidth*i/5,lineHeight*i/5)
+ }
+for(let i =0; i<3; i++){
+ ellipse(350,300,lineWidth*i/2,lineHeight*i/2)
+ }
+ for(let i =0; i<3; i++){
+ ellipse(250,175,lineWidth*i/3.5,lineHeight*i/3.5)
+ }
+ 
+
+
+
+//bass
+ noStroke()
+ fill(54, 164, 179,100)//darker blue
+ for(let i =0; i<6; i++){
+ ellipse(100,250,eWidth*i/4,eHeight*i/4)
+ }
+ for(let i =0; i<3; i++){
+ ellipse(250,100,eWidth*i/3,eHeight*i/3)
+ }
+
+ //or have circles move down throughtout the song link waves and sparkels, make sparkles onlyr eact to drum and move down
 //maybe map all on to other
 //animate to make bigger over time, look at images from aug 24
+
+//change to arrays at somepoint document that change and show code before and after
 
 
 
