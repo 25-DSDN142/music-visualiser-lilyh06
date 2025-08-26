@@ -8,8 +8,9 @@ let sparkleY;
 let eSize;
 
 
-let Xmove;
-let Ymove;
+let Ymove = 1;
+//let edgeYmove = [0,50,150,250,350,450];
+//let Ymove = [50,100,200,300,400,500];
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
@@ -22,14 +23,37 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
  lineWidth = map(other/2,0,100,20,500)
  lineHeight = map(other/2,0,100,20,500)
 
+
 //  eBassWidth = map(bass,0,100,50,300)
 //  eBassHeight = map(bass,0,100,50,300)
 
  sparkleW = map(drum,0,100,5,70)
  sparkleH = map(drum,0,100,5,70)
  sparkleY = map(drum,0,100,200,220)
-fill(255)
-ellipse(250, Ymove++,400,400)
+
+ noFill()
+ strokeWeight(200)
+ stroke(69, 218, 237,30)
+ bezier(0, Ymove-850, 150, Ymove-800, 350, Ymove-800, 550, Ymove-850)
+ strokeWeight(150)
+ bezier(0, Ymove-600, 150, Ymove-550, 350, Ymove-550, 550, Ymove-600)
+ strokeWeight(200)
+ bezier(0, Ymove-350, 150, Ymove-300, 350, Ymove-300, 550, Ymove-350)
+  strokeWeight(150)
+ bezier(0, Ymove-100, 150, Ymove-50, 350, Ymove-50, 550, Ymove-100)
+
+
+//  bezier(0, Ymove, 150, Ymove+50, 350, Ymove+50, 550, Ymove)
+//  bezier(0, Ymove+70, 150, Ymove+120, 350, Ymove+120, 550, Ymove+70)
+//  bezier(0, Ymove+150, 150, Ymove+200, 350, Ymove+200, 550, Ymove+150)
+//  bezier(0, Ymove+240, 150, Ymove+280, 350, Ymove+280, 550, Ymove+240)
+
+ //ellipse(250, Ymove+0.75,700,200)
+ Ymove = Ymove + 1.5;//speed of waves
+ if(Ymove > 1350){ ///the more 'waves u add to top the higher this has to be
+   Ymove = 0
+ }
+  //not working find out how to do
 
 
 
