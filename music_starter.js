@@ -6,7 +6,7 @@ let sparkleW;
 let sparkleH;
 let sparkleY;
 let eSize;
-
+let rainFlicker;
 
 let Ymove = 1;
 //let edgeYmove = [0,50,150,250,350,450];
@@ -20,8 +20,8 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
  eWidth = map(vocal/4,0,100,20,500)
  eHeight = map(vocal/4,0,100,20,500)
 
- lineWidth = map(other/2,0,100,20,500)
- lineHeight = map(other/2,0,100,20,500)
+ lineWidth = map(other/1.5,0,100,20,500)
+ lineHeight = map(other/1.5,0,100,20,500)
 
 
 //  eBassWidth = map(bass,0,100,50,300)
@@ -32,29 +32,48 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
  sparkleY = map(drum,0,100,200,220)
 
  noFill()
- strokeWeight(200)
+ strokeWeight(300)
  stroke(69, 218, 237,30)
- bezier(0, Ymove-850, 150, Ymove-800, 350, Ymove-800, 550, Ymove-850)
- strokeWeight(150)
- bezier(0, Ymove-600, 150, Ymove-550, 350, Ymove-550, 550, Ymove-600)
+
+ bezier(0, Ymove+1950, 150, Ymove+1900, 350, Ymove+1900, 550, Ymove+1950)
  strokeWeight(200)
- bezier(0, Ymove-350, 150, Ymove-300, 350, Ymove-300, 550, Ymove-350)
-  strokeWeight(150)
- bezier(0, Ymove-100, 150, Ymove-50, 350, Ymove-50, 550, Ymove-100)
+ bezier(0, Ymove+1600, 150, Ymove+1550, 350, Ymove+1550, 550, Ymove+1600)
+ strokeWeight(150)
+ bezier(0, Ymove+1350, 150, Ymove+1300, 350, Ymove+1300, 550, Ymove+1350)
+  strokeWeight(100)
+ bezier(0, Ymove+1100, 150, Ymove+1050, 350, Ymove+1050, 550, Ymove+1100)
 
 
-//  bezier(0, Ymove, 150, Ymove+50, 350, Ymove+50, 550, Ymove)
-//  bezier(0, Ymove+70, 150, Ymove+120, 350, Ymove+120, 550, Ymove+70)
-//  bezier(0, Ymove+150, 150, Ymove+200, 350, Ymove+200, 550, Ymove+150)
-//  bezier(0, Ymove+240, 150, Ymove+280, 350, Ymove+280, 550, Ymove+240)
+//  bezier(0, Ymove-850, 150, Ymove-800, 350, Ymove-800, 550, Ymove-850)
+//  strokeWeight(150)
+//  bezier(0, Ymove-600, 150, Ymove-550, 350, Ymove-550, 550, Ymove-600)
+//  strokeWeight(200)
+//  bezier(0, Ymove-350, 150, Ymove-300, 350, Ymove-300, 550, Ymove-350)
+//   strokeWeight(150)
+//  bezier(0, Ymove-100, 150, Ymove-50, 350, Ymove-50, 550, Ymove-100)
+// MAKE WAVES GO IN OTHER DIRECTION
+
 
  //ellipse(250, Ymove+0.75,700,200)
- Ymove = Ymove + 1.5;//speed of waves
- if(Ymove > 1350){ ///the more 'waves u add to top the higher this has to be
-   Ymove = 0
+ Ymove = Ymove - 2;//speed of waves  ///CHNAGED FROM MINUS TO PLIUS FOR DIRECTION
+ if(Ymove < -2500){ ///the more 'waves u add to top the higher this has to be
+   Ymove = 100 //CHANGED OPOOSITE FOR DIRECTION (was 0 and 1950 before)
  }
-  //not working find out how to do
+  //not working find out how to do!!!!!!!!!!!
 
+
+ rainFlicker = map(drum,0,100,-50,70)
+ rainThickness1 = map(other,0,100,1,10)
+ rainThickness2 = map(vocal,0,100,1,10)
+ //RAIN?
+ stroke(69, 218, 237,rainFlicker)
+ strokeWeight(rainThickness1)
+ line(600,0,250,600)
+
+
+
+ strokeWeight(rainThickness2) 
+ line(475,0,250,375)
 
 
 
@@ -65,25 +84,25 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
  fill(69, 218, 237,70)
  eSize = map(vocal/2,0,100,50,500)
  for(let i =0; i<5; i++){
- ellipse(250,375,eWidth*i,eHeight*i)
+ ellipse(250,375,eWidth*i,eHeight*i/2)
  }
  for(let i =0; i<4; i++){
- ellipse(400,400,eWidth*i/2,eHeight*i/2)
+ ellipse(400,400,eWidth*i/2,eHeight*i/3)
  }
  for(let i =0; i<5; i++){
- ellipse(325,525,eWidth*i/2,eHeight*i/2)
+ ellipse(325,525,eWidth*i/2,eHeight*i/3)
  }
  for(let i =0; i<3; i++){
- ellipse(100,600,eWidth*i/2,eHeight*i/2)
+ ellipse(100,600,eWidth*i/2,eHeight*i/3)
  }
  for(let i =0; i<4; i++){
- ellipse(100,600,eWidth*i/2,eHeight*i/2)
+ ellipse(100,600,eWidth*i/2,eHeight*i/3)
  }
  for(let i =0; i<4; i++){
- ellipse(250,675,eWidth*i/1.5,eHeight*i/1.5)
+ ellipse(250,675,eWidth*i/1.5,eHeight*i/2.5)
  }
  for(let i =0; i<3; i++){
- ellipse(250,775,eWidth*i/2,eHeight*i/2)
+ ellipse(250,775,eWidth*i/2,eHeight*i/3)
  }
 
 
@@ -94,16 +113,16 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
  stroke(69, 218, 237,100)
  strokeWeight(4)
  for(let i =0; i<4; i++){
- ellipse(150,450,lineWidth*i/3,lineHeight*i/3)
+ ellipse(150,450,lineWidth*i/3,lineHeight*i/4)
  }
  for(let i =0; i<4; i++){
- ellipse(250,600,lineWidth*i/5,lineHeight*i/5)
+ ellipse(250,600,lineWidth*i/5,lineHeight*i/7)
  }
 for(let i =0; i<3; i++){
- ellipse(350,300,lineWidth*i/2,lineHeight*i/2)
+ ellipse(350,300,lineWidth*i/2,lineHeight*i/3)
  }
  for(let i =0; i<3; i++){
- ellipse(250,175,lineWidth*i/3.5,lineHeight*i/3.5)
+ ellipse(250,175,lineWidth*i/3.5,lineHeight*i/4.5)
  }
  
 
@@ -113,11 +132,19 @@ for(let i =0; i<3; i++){
  noStroke()
  fill(54, 164, 179,100)//darker blue
  for(let i =0; i<6; i++){
- ellipse(100,250,eWidth*i/4,eHeight*i/4)
+ ellipse(100,250,eWidth*i/4,eHeight*i/5)
  }
  for(let i =0; i<3; i++){
- ellipse(250,100,eWidth*i/3,eHeight*i/3)
+ ellipse(250,100,eWidth*i/3,eHeight*i/4)
  }
+
+
+
+
+
+
+
+
 
  //or have circles move down throughtout the song link waves and sparkels, make sparkles onlyr eact to drum and move down
 //maybe map all on to other
