@@ -20,20 +20,32 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
  eWidth = map(vocal/4,0,100,20,500)
  eHeight = map(vocal/4,0,100,20,500)
 
- lineWidth = map(other/1.5,0,100,20,500)
- lineHeight = map(other/1.5,0,100,20,500)
-
-
-//  eBassWidth = map(bass,0,100,50,300)
-//  eBassHeight = map(bass,0,100,50,300)
+ lineWidth = map(other/2,0,100,20,500)
+ lineHeight = map(other/2,0,100,20,500)
 
  sparkleW = map(drum,0,100,5,70)
  sparkleH = map(drum,0,100,5,70)
  sparkleY = map(drum,0,100,200,220)
 
+ //BACKGROUND DETAILS? ------lerp colour maybe?
+fill(0)
+noStroke()
+rect(0,0,275,1000)
+ellipse(250,15,100,40)
+ellipse(260,100,150,70)
+
+fill(6, 89, 128)//blue
+ellipse(250,51,150,40)
+ellipse(250,176,130,90)
+ellipse(170,130,50,20)
+
+fill(0)//black
+ellipse(325,62,40,20)
+
+//WAVES
  noFill()
  strokeWeight(300)
- stroke(69, 218, 237,30)
+ stroke(0,50)
 
  bezier(0, Ymove+1950, 150, Ymove+1900, 350, Ymove+1900, 550, Ymove+1950)
  strokeWeight(200)
@@ -62,30 +74,33 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   //not working find out how to do!!!!!!!!!!!
 
 
- rainFlicker = map(drum,0,100,-50,70)
- rainThickness1 = map(other,0,100,1,10)
- rainThickness2 = map(vocal,0,100,1,10)
- //RAIN?
+
+//RAIN?
+ rainFlicker = map(drum,0,100,-20,70)
+ rainThickness1 = map(other/2,0,100,1,10)
+ rainThickness2 = map(vocal/2,0,100,1,10)
  stroke(69, 218, 237,rainFlicker)
  strokeWeight(rainThickness1)
- line(600,0,250,600)
+   line(600,0,250,600)
+    strokeWeight(rainThickness2) 
+   line(540,170,400,400)
 
-
-
- strokeWeight(rainThickness2) 
- line(475,0,250,375)
-
-
-
-
-
-//vocal
+ //DROPLETS
+ //vocal
  noStroke()
  fill(69, 218, 237,70)
  eSize = map(vocal/2,0,100,50,500)
  for(let i =0; i<5; i++){
  ellipse(250,375,eWidth*i,eHeight*i/2)
  }
+
+ fill(242, 141, 0,40)//orange----------testing this out NEW
+ for(let i =0; i<5; i++){
+ ellipse(250,375,eWidth*i/2,eHeight*i/4)
+ }
+
+ fill(69, 218, 237,70)
+
  for(let i =0; i<4; i++){
  ellipse(400,400,eWidth*i/2,eHeight*i/3)
  }
@@ -105,44 +120,35 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
  ellipse(250,775,eWidth*i/2,eHeight*i/3)
  }
 
+ for(let i =0; i<3; i++){
+ ellipse(250,100,eWidth*i/3,eHeight*i/5)
+ }
+//fill(6, 89, 128,100)//blue
+  for(let i =0; i<6; i++){
+ ellipse(100,250,eWidth*i/4,eHeight*i/6)
+ }
 
 
-
-//other, same colour
+ //other, same colour, lines
  noFill()
  stroke(69, 218, 237,100)
  strokeWeight(4)
  for(let i =0; i<4; i++){
- ellipse(150,450,lineWidth*i/3,lineHeight*i/4)
+ ellipse(150,450,lineWidth*i/3,lineHeight*i/5)
  }
  for(let i =0; i<4; i++){
  ellipse(250,600,lineWidth*i/5,lineHeight*i/7)
  }
 for(let i =0; i<3; i++){
- ellipse(350,300,lineWidth*i/2,lineHeight*i/3)
+ ellipse(350,300,lineWidth*i/2,lineHeight*i/4)
  }
+
+
+//stroke(6, 128, 108,150)//green
  for(let i =0; i<3; i++){
- ellipse(250,175,lineWidth*i/3.5,lineHeight*i/4.5)
+ ellipse(250,175,lineWidth*i/3.5,lineHeight*i/5.5)
  }
  
-
-
-
-//bass
- noStroke()
- fill(54, 164, 179,100)//darker blue
- for(let i =0; i<6; i++){
- ellipse(100,250,eWidth*i/4,eHeight*i/5)
- }
- for(let i =0; i<3; i++){
- ellipse(250,100,eWidth*i/3,eHeight*i/4)
- }
-
-
-
-
-
-
 
 
 
