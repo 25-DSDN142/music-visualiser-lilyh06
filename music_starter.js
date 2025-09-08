@@ -8,10 +8,13 @@ let sparkleY;
 let eSize;
 let rainFlicker;
 let Ymove = 1;
+let myImage;
+let myImage2;
+let firstRun = true;
+let fishMove = 1;
+let fishMove2 = 1;
 
 
-//let edgeYmove = [0,50,150,250,350,450];
-//let Ymove = [50,100,200,300,400,500];
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
@@ -28,6 +31,21 @@ angleMode(DEGREES)
  sparkleW = map(drum,0,100,5,70)
  sparkleH = map(drum,0,100,5,70)
  sparkleY = map(drum,0,100,200,220)
+
+
+ //FISH
+ if(firstRun){
+
+  myImage = loadImage('fish.png')
+  firstRun = false;
+}
+image(myImage,fishMove,60)
+
+fishMove = fishMove - 0.5;
+ if(fishMove <1){ 
+   fishMove = 560
+ }
+ 
 
 
 //BACKGROUND DETAILS? ------lerp colour maybe?
@@ -155,17 +173,18 @@ let lightBlue = color(69, 218, 237,70)
 
 let lerpAmt2 = map(vocal/3,0,100,0.33,1)
 let dropletCenter1 = lerpColor(lightBlue, Orange,lerpAmt2)
+
  fill(dropletCenter1)//orange----------testing this out NEW
- for(let i =0; i<5; i++){
- ellipse(250,375,eWidth*i/2,eHeight*i/4)
- }
+for(let i =0; i<5; i++){
+ ellipse(250,375,eWidth*i/2,eHeight*i/4) 
+}
 
 
 
  for(let i =0; i<4; i++){
  ellipse(400,400,eWidth*i/2,eHeight*i/3)
  }
-  fill(dropletCenter1)//orange----------testing this out NEW
+  fill(dropletCenter1)
  for(let i =0; i<5; i++){
  ellipse(400,400,eWidth*i/4,eHeight*i/6)
  }
@@ -188,16 +207,16 @@ let dropletCenter1 = lerpColor(lightBlue, Orange,lerpAmt2)
  for(let i =0; i<3; i++){
  ellipse(250,100,eWidth*i/3,eHeight*i/5)
  }
-//fill(6, 89, 128,100)//blue
+
   for(let i =0; i<6; i++){
  ellipse(100,250,eWidth*i/4,eHeight*i/6)
  }
-
 
  //other, same colour, lines
  noFill()
  stroke(69, 218, 237,100)
  strokeWeight(4)
+
  for(let i =0; i<4; i++){
  ellipse(150,450,lineWidth*i/3,lineHeight*i/5)
  }
@@ -207,11 +226,17 @@ let dropletCenter1 = lerpColor(lightBlue, Orange,lerpAmt2)
 for(let i =0; i<3; i++){
  ellipse(350,300,lineWidth*i/2,lineHeight*i/4)
  }
-//stroke(6, 128, 108,150)//green
+
  for(let i =0; i<3; i++){
  ellipse(250,175,lineWidth*i/3.5,lineHeight*i/5.5)
  }
  
+
+
+ 
+
+
+
 //  noStroke()
 //  fill(255,200)
 //  rotate(45);
