@@ -7,13 +7,15 @@ let sparkleH;
 let sparkleY;
 let eSize;
 let rainFlicker;
-
 let Ymove = 1;
+
+
 //let edgeYmove = [0,50,150,250,350,450];
 //let Ymove = [50,100,200,300,400,500];
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
+angleMode(DEGREES)
 
 //third droplet version
  background(6, 89, 128)
@@ -27,26 +29,74 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
  sparkleH = map(drum,0,100,5,70)
  sparkleY = map(drum,0,100,200,220)
 
- //BACKGROUND DETAILS? ------lerp colour maybe?
-fill(0)
-noStroke()
-rect(0,0,275,1000)
-ellipse(250,15,100,40)
-ellipse(260,100,150,70)
 
-fill(6, 89, 128)//blue
-ellipse(250,51,150,40)
-ellipse(250,176,130,90)
-ellipse(170,130,50,20)
+//BACKGROUND DETAILS? ------lerp colour maybe?
+ 
+//FAILED GRADIENT
+ //  let c1 = color(0);
+ //  let c2 = color(1, 51, 94);//darker blue
+ //  let c3 = lerpColor(c1,c2,0.66)
+ //  noStroke()
+ //  fill(c1)
+ //  rect(0,0,275,333)
+ //  fill(c3)
+ //  rect(0,333,275,666)
+ //  fill(c2)
+ //  rect(0,666,275,999)
 
-fill(0)//black
-ellipse(325,62,40,20)
+ let Blue = color(6, 89, 128)
+ let Blue2 = color(6, 124, 128)
+ let blueDark = color(1, 51, 94)
+ let Black = color(0)
+ let White = color(255)
+ 
+ let lerpAmt = map(vocal/2,0,100,0,1)
+ let changingColor = lerpColor (blueDark,Blue, lerpAmt)
+
+ noStroke()
+ fill(changingColor)
+ rect(0,0,275,960)
+
+ ellipse(250,15,100,40)
+ ellipse(260,100,150,70)
+
+ fill(6, 89, 128)//blue right
+ ellipse(250,51,150,40)
+ ellipse(250,176,130,90)
+ ellipse(170,130,50,20)
+ ellipse(260,230,60,30)
+// ellipse(200,235,40,15)
+ ellipse(280,299,70,75)
+ ellipse(285,439,50,30)
+ ellipse(285,520,190,82)
+ ellipse(255,680,190,90)
+ ellipse(140,720,70,30)
+ ellipse(280,864,160,80)
+
+ 
+
+
+ fill(changingColor)//left
+ ellipse(325,62,40,15)
+ ellipse(270,253,70,19)
+ ellipse(310,230,50,15)
+ ellipse(270,380,160,90)
+ ellipse(265,465,50,30)
+// ellipse(320,440,60,20)
+ ellipse(250,600,130,82)
+ ellipse(255,774,300,100)
+ ellipse(320,845,70,30)
+ ellipse(260,954,300,100)
+
+
+ 
 
 //WAVES
  noFill()
+ stroke(1, 51, 94,30)
+ strokeWeight(400)
+ bezier(0, Ymove+2450, 150, Ymove+2350, 350, Ymove+2350, 560, Ymove+2450)
  strokeWeight(300)
- stroke(0,50)
-
  bezier(0, Ymove+1950, 150, Ymove+1900, 350, Ymove+1900, 550, Ymove+1950)
  strokeWeight(200)
  bezier(0, Ymove+1600, 150, Ymove+1550, 350, Ymove+1550, 550, Ymove+1600)
@@ -56,22 +106,12 @@ ellipse(325,62,40,20)
  bezier(0, Ymove+1100, 150, Ymove+1050, 350, Ymove+1050, 550, Ymove+1100)
 
 
-//  bezier(0, Ymove-850, 150, Ymove-800, 350, Ymove-800, 550, Ymove-850)
-//  strokeWeight(150)
-//  bezier(0, Ymove-600, 150, Ymove-550, 350, Ymove-550, 550, Ymove-600)
-//  strokeWeight(200)
-//  bezier(0, Ymove-350, 150, Ymove-300, 350, Ymove-300, 550, Ymove-350)
-//   strokeWeight(150)
-//  bezier(0, Ymove-100, 150, Ymove-50, 350, Ymove-50, 550, Ymove-100)
-// MAKE WAVES GO IN OTHER DIRECTION
-
 
  //ellipse(250, Ymove+0.75,700,200)
- Ymove = Ymove - 2;//speed of waves  ///CHNAGED FROM MINUS TO PLIUS FOR DIRECTION
- if(Ymove < -2500){ ///the more 'waves u add to top the higher this has to be
-   Ymove = 100 //CHANGED OPOOSITE FOR DIRECTION (was 0 and 1950 before)
+ Ymove = Ymove - 1.5;//speed of waves  ///CHNAGED FROM MINUS TO PLIUS FOR DIRECTION
+ if(Ymove < -2650){ ///the more 'waves u add to top the higher this has to be
+   Ymove = 0 //CHANGED OPOOSITE FOR DIRECTION (was 0 and 1950 before)
  }
-  //not working find out how to do!!!!!!!!!!!
 
 
 
@@ -79,13 +119,29 @@ ellipse(325,62,40,20)
  rainFlicker = map(drum,0,100,-20,70)
  rainThickness1 = map(other/2,0,100,1,10)
  rainThickness2 = map(vocal/2,0,100,1,10)
- stroke(69, 218, 237,rainFlicker)
+ stroke(69, 218, 237,rainFlicker) 
+//fill droplets
  strokeWeight(rainThickness1)
    line(600,0,250,600)
-    strokeWeight(rainThickness2) 
+ strokeWeight(rainThickness1) 
+   line(540,170,325,525)
+ strokeWeight(rainThickness1) 
+   line(490,0,100,600)
+ strokeWeight(rainThickness1) 
+   line(540,200,250,675)
+ strokeWeight(rainThickness1) 
+   line(540,300,250,775)
+ strokeWeight(rainThickness1) 
+   line(325,0,250,100)
+ strokeWeight(rainThickness1) 
+   line(290,0,100,250)
+ 
+//line droplets
+   strokeWeight(rainThickness2) 
    line(540,170,400,400)
 
- //DROPLETS
+
+//DROPLETS
  //vocal
  noStroke()
  fill(69, 218, 237,70)
@@ -93,26 +149,35 @@ ellipse(325,62,40,20)
  for(let i =0; i<5; i++){
  ellipse(250,375,eWidth*i,eHeight*i/2)
  }
+let Orange = color(242, 141, 0,40)
+let Green = color(6, 128, 87,40)
+let lightBlue = color(69, 218, 237,70)
 
- fill(242, 141, 0,40)//orange----------testing this out NEW
+let lerpAmt2 = map(vocal/3,0,100,0.33,1)
+let dropletCenter1 = lerpColor(lightBlue, Orange,lerpAmt2)
+ fill(dropletCenter1)//orange----------testing this out NEW
  for(let i =0; i<5; i++){
  ellipse(250,375,eWidth*i/2,eHeight*i/4)
  }
 
- fill(69, 218, 237,70)
+
 
  for(let i =0; i<4; i++){
  ellipse(400,400,eWidth*i/2,eHeight*i/3)
  }
+  fill(dropletCenter1)//orange----------testing this out NEW
+ for(let i =0; i<5; i++){
+ ellipse(400,400,eWidth*i/4,eHeight*i/6)
+ }
+  fill(69, 218, 237,70)
+
  for(let i =0; i<5; i++){
  ellipse(325,525,eWidth*i/2,eHeight*i/3)
- }
- for(let i =0; i<3; i++){
- ellipse(100,600,eWidth*i/2,eHeight*i/3)
  }
  for(let i =0; i<4; i++){
  ellipse(100,600,eWidth*i/2,eHeight*i/3)
  }
+ 
  for(let i =0; i<4; i++){
  ellipse(250,675,eWidth*i/1.5,eHeight*i/2.5)
  }
@@ -142,13 +207,17 @@ ellipse(325,62,40,20)
 for(let i =0; i<3; i++){
  ellipse(350,300,lineWidth*i/2,lineHeight*i/4)
  }
-
-
 //stroke(6, 128, 108,150)//green
  for(let i =0; i<3; i++){
  ellipse(250,175,lineWidth*i/3.5,lineHeight*i/5.5)
  }
  
+//  noStroke()
+//  fill(255,200)
+//  rotate(45);
+//   for(let i =0; i<5; i++){
+//   rect (300,sparkleY*i,sparkleW,sparkleH)
+//  }
 
 
 
