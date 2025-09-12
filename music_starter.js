@@ -1,29 +1,31 @@
-let eWidth;
-let eHeight;
-let eSmallWidth;
-let eSmallHeight;
-let sparkleW;
-let sparkleH;
-let sparkleY;
-let eSize;
-let rainFlicker;
+
 let Ymove = 1;
-let myImage;
-let myImage2;
+
+let mySparkle;//sparkle
+let myImage2; 
+let myImage3;
+let myImage4; 
+
 let firstRun = true;
 let fishMove = 1;
 let fishMove2 = 1;
-
+let fishMove3 = 1;
+let fishMove4 = 1;
+let sparklemoveY = 1000 
 
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
 angleMode(DEGREES)
 
+console.log(counter);
+
+
+
 //third droplet version
  background(6, 89, 128)
- eWidth = map(vocal/4,0,100,20,500)
- eHeight = map(vocal/4,0,100,20,500)
+ eWidth = map(vocal/5,0,100,20,500)
+ eHeight = map(vocal/5,0,100,20,500)
 
  lineWidth = map(other/2,0,100,20,500)
  lineHeight = map(other/2,0,100,20,500)
@@ -32,43 +34,72 @@ angleMode(DEGREES)
  sparkleH = map(drum,0,100,5,70)
  sparkleY = map(drum,0,100,200,220)
 
-
  //FISH
  if(firstRun){
-
+  mySparkle = loadImage('sparkle.png')
   myImage = loadImage('fish.png')
+  myImage2 = loadImage('fish2.png')
+ myImage3 = loadImage ('fish3 right.png')
+ myImage4 = loadImage('fishschool right.png')
+  
   firstRun = false;
 }
+//fish top
+//makes heaps of fish swim through at this point
+ if(counter >= 11200 && counter <=13900){
 image(myImage,fishMove,60)
-
-fishMove = fishMove - 0.5;
- if(fishMove <1){ 
+ fishMove = fishMove - 0.5;
+}
+if(fishMove <-40){ 
    fishMove = 560
+}
+ if(counter >= 11200 && counter <=13900){
+image(myImage3,fishMove3,330)
+ fishMove3 = fishMove3 + 0.5;
+}
+if(fishMove3 >=600){ 
+   fishMove3 = 1
+}
+
+
+ if(counter >= 11200 && counter <=13900){//11200
+image(myImage4,fishMove4,555)
+ fishMove4 = fishMove4 + 0.5;
+}
+if(fishMove4 >=600){ 
+   fishMove4 = 1
+}
+
+
+
+
+//SPARKLE MOVING ....CHANGE 
+//put some of these in but still maybe
+ image(mySparkle,400,sparklemoveY)
+ sparklemoveY = sparklemoveY - 1.5;
+if(sparklemoveY < 0 ){ 
+sparklemoveY = 1000 
+}
+
+//FISH 2 
+if(counter >= 11200 && counter <=13900){
+  image(myImage2,fishMove2,800)
+fishMove2 = fishMove2 + 0.9
+}
+
+ if(fishMove2 >=600){ 
+ fishMove2 = 1
  }
- 
 
 
-//BACKGROUND DETAILS? ------lerp colour maybe?
- 
-//FAILED GRADIENT
- //  let c1 = color(0);
- //  let c2 = color(1, 51, 94);//darker blue
- //  let c3 = lerpColor(c1,c2,0.66)
- //  noStroke()
- //  fill(c1)
- //  rect(0,0,275,333)
- //  fill(c3)
- //  rect(0,333,275,666)
- //  fill(c2)
- //  rect(0,666,275,999)
-
+//BACKGROUND
+//make all lerps eaiser to see that thats what theyre doing!!!!!!!!!
  let Blue = color(6, 89, 128)
  let Blue2 = color(6, 124, 128)
  let blueDark = color(1, 51, 94)
  let Black = color(0)
- let White = color(255)
  
- let lerpAmt = map(vocal/2,0,100,0,1)
+ let lerpAmt = map(vocal/1.5,0,100,0,1)
  let changingColor = lerpColor (blueDark,Blue, lerpAmt)
 
  noStroke()
@@ -83,7 +114,6 @@ fishMove = fishMove - 0.5;
  ellipse(250,176,130,90)
  ellipse(170,130,50,20)
  ellipse(260,230,60,30)
-// ellipse(200,235,40,15)
  ellipse(280,299,70,75)
  ellipse(285,439,50,30)
  ellipse(285,520,190,82)
@@ -91,23 +121,16 @@ fishMove = fishMove - 0.5;
  ellipse(140,720,70,30)
  ellipse(280,864,160,80)
 
- 
-
-
  fill(changingColor)//left
  ellipse(325,62,40,15)
  ellipse(270,253,70,19)
  ellipse(310,230,50,15)
  ellipse(270,380,160,90)
  ellipse(265,465,50,30)
-// ellipse(320,440,60,20)
  ellipse(250,600,130,82)
  ellipse(255,774,300,100)
  ellipse(320,845,70,30)
  ellipse(260,954,300,100)
-
-
- 
 
 //WAVES
  noFill()
@@ -123,8 +146,6 @@ fishMove = fishMove - 0.5;
   strokeWeight(100)
  bezier(0, Ymove+1100, 150, Ymove+1050, 350, Ymove+1050, 550, Ymove+1100)
 
-
-
  //ellipse(250, Ymove+0.75,700,200)
  Ymove = Ymove - 1.5;//speed of waves  ///CHNAGED FROM MINUS TO PLIUS FOR DIRECTION
  if(Ymove < -2650){ ///the more 'waves u add to top the higher this has to be
@@ -132,9 +153,8 @@ fishMove = fishMove - 0.5;
  }
 
 
-
 //RAIN?
- rainFlicker = map(drum,0,100,-20,70)
+ rainFlicker = map(vocal,0,100,-20,70)//originally drum
  rainThickness1 = map(other/2,0,100,1,10)
  rainThickness2 = map(vocal/2,0,100,1,10)
  stroke(69, 218, 237,rainFlicker) 
@@ -236,13 +256,16 @@ for(let i =0; i<3; i++){
  
 
 
-
-//  noStroke()
-//  fill(255,200)
-//  rotate(45);
-//   for(let i =0; i<5; i++){
-//   rect (300,sparkleY*i,sparkleW,sparkleH)
-//  }
+ 
+ noStroke()
+ fill(255,200)
+ rotate(45);
+  for(let i =0; i<1; i++){
+  rect (275,sparkleY*i,sparkleW/3,sparkleH/3)
+ }
+  for(let i =0; i<1; i++){
+  rect (800,250,sparkleW/3,sparkleH/3)
+ }
 
 
 
