@@ -1,19 +1,16 @@
-
-let Ymove = 1;
-
-let mySparkle;
+let sparkle;
 let myImage2; 
 let myImage3;
 let myImage4; 
 let myImage5;
-
 let firstRun = true;
+
+let Ymove = 1;
 let fishMove = 1;
 let fishMove2 = 1;
 let fishMove3 = 1;
 let fishMove4 = 1;
 let fishMove5 = 1;
-
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
@@ -27,13 +24,17 @@ background(6, 89, 128);
  lineWidth = map(other/2,0,100,20,500);
  lineHeight = map(other/2,0,100,20,500);
 
- sparkleW = map(drum,0,100,5,70);
- sparkleH = map(drum,0,100,5,70);
- sparkleY = map(drum,0,100,200,220);
+ sparkleW = map(vocal,0,100,5,70);
+ sparkleH = map(vocal,0,100,5,70);
+ sparkleY = map(vocal,0,100,200,220);
+
+ sparkleW2 = map(drum,0,100,5,70);
+ sparkleH2 = map(drum,0,100,5,70);
+ sparkleY2 = map(drum,0,100,200,220);
 
  //FISH
  if(firstRun){
- mySparkle = loadImage('sparkle.png');
+ sparkle = loadImage('sparkle.png');
  myImage = loadImage('fish.png');
  myImage2 = loadImage('fish2.png');
  myImage3 = loadImage ('fish3 right.png');
@@ -89,11 +90,10 @@ image(myImage5,fishMove5,220);
 
  let lerpAmt = map(vocal/2,0,100,0,1);
  let changingColor = lerpColor (blueDark,Blue, lerpAmt)
- let changingColor2 = lerpColor (Blue, blueDark, lerpAmt)
 
  noStroke()
   if(counter >= 0  && counter <=3500){
-fill(changingColor2)
+fill(6, 75, 128)
  rect(0,0,275,960)
 }
 else{fill(changingColor)
@@ -114,7 +114,7 @@ else{fill(changingColor)
  ellipse(280,864,160,80)
 
   if(counter >= 0  && counter <=3500){
-fill(changingColor2)
+fill(6, 75, 128)
 }
 else{fill(changingColor)
  }
@@ -152,11 +152,10 @@ else{fill(changingColor)
    Ymove = 0 
  }
 
-
 //RAIN
  rainFlicker = map(vocal,0,100,-20,70)//originally drum
- rainThickness1 = map(other/2,0,100,1,10)
- rainThickness2 = map(vocal/2,0,100,1,10)
+ rainThickness1 = map(drum/2,0,100,1,10)
+ rainThickness2 = map(drum,0,100,1,10)
  stroke(69, 218, 237,rainFlicker) 
 //fill droplets
  strokeWeight(rainThickness1)
@@ -257,20 +256,24 @@ for(let i =0; i<3; i++){
  
 //SPARKLES
  noStroke()
- fill(255, 244, 166)
+ fill(255, 244, 166,200)
+
   if(counter >= 490){
- image(mySparkle,310,120);
- image(mySparkle,330,700);
+ image(sparkle,310,120);
+ image(sparkle,90,700);
  rotate(45);
-  rect (275,0,sparkleW/3,sparkleH/3)
-  rect (295,0,sparkleW/5,sparkleH/5)
-  
+ rect (275,0,sparkleW/3,sparkleH/3)
+ rect (295,0,sparkleW2/5,sparkleH2/5)
  rect (495,sparkleY,sparkleW/5,sparkleH/5)
- rect (800,250,sparkleW/3,sparkleH/3)
+ rect (800,250,sparkleW2/3,sparkleH2/3)
  rect (800,330,sparkleW/4,sparkleH/4)
  rect (600,190,sparkleW/3,sparkleH/3)
- 
 }
+ rotate(45)
+ rect (500,190,sparkleW2/4,sparkleH2/4)
+ rect (495,210,sparkleW2/6,sparkleH2/6)
+ rect (295,0,sparkleW2/5,sparkleH2/5)
+
 
 
 }
