@@ -1,29 +1,28 @@
 
 let Ymove = 1;
 
-let mySparkle;//sparkle
+let mySparkle;
 let myImage2; 
 let myImage3;
 let myImage4; 
+let myImage5;
 
 let firstRun = true;
 let fishMove = 1;
 let fishMove2 = 1;
 let fishMove3 = 1;
 let fishMove4 = 1;
-let sparklemoveY = 1000 
+let fishMove5 = 1;
+
 
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
 angleMode(DEGREES)
-
 console.log(counter);
+background(6, 89, 128)
 
 
-
-//third droplet version
- background(6, 89, 128)
  eWidth = map(vocal/5,0,100,20,500)
  eHeight = map(vocal/5,0,100,20,500)
 
@@ -36,24 +35,28 @@ console.log(counter);
 
  //FISH
  if(firstRun){
-  mySparkle = loadImage('sparkle.png')
-  myImage = loadImage('fish.png')
-  myImage2 = loadImage('fish2.png')
+ mySparkle = loadImage('sparkle.png')
+ myImage = loadImage('fish.png')
+ myImage2 = loadImage('fish2.png')
  myImage3 = loadImage ('fish3 right.png')
  myImage4 = loadImage('fishschool right.png')
+ myImage5 = loadImage('fish2 right.png')
   
   firstRun = false;
 }
-//fish top
-//makes heaps of fish swim through at this point
- if(counter >= 11200 && counter <=13900){
+
+image(mySparkle,310,120)
+
+//FISH
+ if(counter >= 11200  && counter <=13900){
 image(myImage,fishMove,60)
  fishMove = fishMove - 0.5;
 }
 if(fishMove <-40){ 
    fishMove = 560
 }
- if(counter >= 11200 && counter <=13900){
+
+ if(counter >= 11200  && counter <=13900){
 image(myImage3,fishMove3,330)
  fishMove3 = fishMove3 + 0.5;
 }
@@ -61,53 +64,53 @@ if(fishMove3 >=600){
    fishMove3 = 1
 }
 
-
- if(counter >= 11200 && counter <=13900){//11200
+if(counter >= 11200  && counter <=13900){//11200
 image(myImage4,fishMove4,555)
- fishMove4 = fishMove4 + 0.5;
+ fishMove4 = fishMove4 + 1;
 }
 if(fishMove4 >=600){ 
    fishMove4 = 1
 }
 
-
-
-
-//SPARKLE MOVING ....CHANGE 
-//put some of these in but still maybe
- image(mySparkle,400,sparklemoveY)
- sparklemoveY = sparklemoveY - 1.5;
-if(sparklemoveY < 0 ){ 
-sparklemoveY = 1000 
+ if(counter >= 11200  && counter <=13900){
+image(myImage2,fishMove2,800)
+ fishMove2 = fishMove2 + 0.9
 }
-
-//FISH 2 
-if(counter >= 11200 && counter <=13900){
-  image(myImage2,fishMove2,800)
-fishMove2 = fishMove2 + 0.9
-}
-
  if(fishMove2 >=600){ 
- fishMove2 = 1
- }
+   fishMove2 = 1
+}
+
+ if(counter >= 11200 && counter <=13900){//11200
+image(myImage5,fishMove5,220)
+ fishMove5 = fishMove5 + 0.75;
+}
+ if(fishMove5 >=600){ 
+   fishMove5 = 1
+}
+
 
 
 //BACKGROUND
 //make all lerps eaiser to see that thats what theyre doing!!!!!!!!!
  let Blue = color(6, 89, 128)
- let Blue2 = color(6, 124, 128)
  let blueDark = color(1, 51, 94)
- let Black = color(0)
- 
- let lerpAmt = map(vocal/1.5,0,100,0,1)
+
+  let lerpAmt = map(vocal/1.5,0,100,0,1)
  let changingColor = lerpColor (blueDark,Blue, lerpAmt)
+ let changingColor2 = lerpColor (Blue, blueDark, lerpAmt)
 
  noStroke()
- fill(changingColor)
+  if(counter >= 0  && counter <=3500){
+fill(changingColor2)
  rect(0,0,275,960)
+}
+else{fill(changingColor)
+ rect(0,0,275,960)}
+ 
 
  ellipse(250,15,100,40)
  ellipse(260,100,150,70)
+
 
  fill(6, 89, 128)//blue right
  ellipse(250,51,150,40)
@@ -121,7 +124,13 @@ fishMove2 = fishMove2 + 0.9
  ellipse(140,720,70,30)
  ellipse(280,864,160,80)
 
- fill(changingColor)//left
+  if(counter >= 0  && counter <=3500){
+fill(changingColor2)
+
+}
+else{fill(changingColor)
+ }
+
  ellipse(325,62,40,15)
  ellipse(270,253,70,19)
  ellipse(310,230,50,15)
@@ -153,7 +162,7 @@ fishMove2 = fishMove2 + 0.9
  }
 
 
-//RAIN?
+//RAIN
  rainFlicker = map(vocal,0,100,-20,70)//originally drum
  rainThickness1 = map(other/2,0,100,1,10)
  rainThickness2 = map(vocal/2,0,100,1,10)
@@ -173,7 +182,6 @@ fishMove2 = fishMove2 + 0.9
    line(325,0,250,100)
  strokeWeight(rainThickness1) 
    line(290,0,100,250)
- 
 //line droplets
    strokeWeight(rainThickness2) 
    line(540,170,400,400)
@@ -188,24 +196,23 @@ fishMove2 = fishMove2 + 0.9
  ellipse(250,375,eWidth*i,eHeight*i/2)
  }
 let Orange = color(242, 141, 0,40)
-let Green = color(6, 128, 87,40)
+
 let lightBlue = color(69, 218, 237,70)
 
 let lerpAmt2 = map(vocal/3,0,100,0.33,1)
 let dropletCenter1 = lerpColor(lightBlue, Orange,lerpAmt2)
 
- fill(dropletCenter1)//orange----------testing this out NEW
+ fill(dropletCenter1)
 for(let i =0; i<5; i++){
  ellipse(250,375,eWidth*i/2,eHeight*i/4) 
 }
-
-
-
+ 
  for(let i =0; i<4; i++){
  ellipse(400,400,eWidth*i/2,eHeight*i/3)
  }
   fill(dropletCenter1)
- for(let i =0; i<5; i++){
+
+  for(let i =0; i<5; i++){
  ellipse(400,400,eWidth*i/4,eHeight*i/6)
  }
   fill(69, 218, 237,70)
@@ -213,6 +220,7 @@ for(let i =0; i<5; i++){
  for(let i =0; i<5; i++){
  ellipse(325,525,eWidth*i/2,eHeight*i/3)
  }
+
  for(let i =0; i<4; i++){
  ellipse(100,600,eWidth*i/2,eHeight*i/3)
  }
@@ -251,20 +259,33 @@ for(let i =0; i<3; i++){
  ellipse(250,175,lineWidth*i/3.5,lineHeight*i/5.5)
  }
  
+  for(let i =0; i<3; i++){
+ ellipse(400,570,lineWidth*i/3.5,lineHeight*i/5.5)
+ }
+   for(let i =0; i<3; i++){
+ ellipse(250,865,lineWidth*i/4,lineHeight*i/6)
+ }
 
 
  
-
-
- 
+//Sparkles
  noStroke()
- fill(255,200)
+ fill(255, 244, 166)
  rotate(45);
   for(let i =0; i<1; i++){
   rect (275,sparkleY*i,sparkleW/3,sparkleH/3)
  }
+  
+  rect (495,sparkleY,sparkleW/1.2,sparkleH/1.2)
+
   for(let i =0; i<1; i++){
   rect (800,250,sparkleW/3,sparkleH/3)
+ }
+   for(let i =0; i<1; i++){
+  rect (800,330,sparkleW/2,sparkleH/2)
+ }
+  for(let i =0; i<1; i++){
+  rect (600,190,sparkleW/3,sparkleH/3)
  }
 
 
